@@ -99,8 +99,8 @@ public void setUp() {
 	chromePath = System.getProperty("chrome");
 	dependentFilesPath = System.getProperty("DEPENDENT_FILES_PATH");
 	webURL=System.getProperty("webAppURL");
-	  String platform[]=devicePlatform.split("-");
-	browserName = platform[1];
+	  
+	browserName = "CHROME";
 	  System.out.println("BrowserName : "+browserName);
 	projectPath=Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace("/", java.io.File.separator);
 	if(projectPath.endsWith(".jar"))projectPath=projectPath.substring(0,projectPath.lastIndexOf(java.io.File.separator)+1);
