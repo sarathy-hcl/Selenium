@@ -1,0 +1,7 @@
+com\hcl\taf\Identity.class
+com\hcl\taf\TC1.class
+com\hcl\taf\TearDownTestNG.class
+com\hcl\taf\SetUpTestNG.class
+com\hcl\taf\Main.class
+com\hcl\taf\Login.class
+com\hcl\taf\Util.class

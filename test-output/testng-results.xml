@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="TestSuite" duration-ms="14728" started-at="2020-11-26T12:43:21Z" finished-at="2020-11-26T12:43:36Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="14728" started-at="2020-11-26T12:43:21Z" finished-at="2020-11-26T12:43:36Z">
+      <class name="com.hcl.taf.Main">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.hcl.taf.Main@7dc36524]" name="setUp" duration-ms="8306" started-at="2020-11-26T18:13:21Z" finished-at="2020-11-26T18:13:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.hcl.taf.Main@7dc36524]" name="tearDown" is-config="true" duration-ms="1402" started-at="2020-11-26T18:13:36Z" finished-at="2020-11-26T18:13:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.hcl.taf.Main -->
+      <class name="com.hcl.taf.TC1">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.hcl.taf.TC1@4563e9ab]" name="setUp" is-config="true" duration-ms="3" started-at="2020-11-26T18:13:30Z" finished-at="2020-11-26T18:13:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="WebTCMethod()[pri:0, instance:com.hcl.taf.TC1@4563e9ab]" name="WebTCMethod" duration-ms="6405" started-at="2020-11-26T18:13:30Z" finished-at="2020-11-26T18:13:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- WebTCMethod -->
+      </class> <!-- com.hcl.taf.TC1 -->
+    </test> <!-- Test -->
+  </suite> <!-- TestSuite -->
+</testng-results>

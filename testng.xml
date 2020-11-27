@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+	<test name="Test" preserve-order="true">
+		<classes>
+			<!-- <class name="org.ust.test.Main"/>
+			<class name="org.ust.test.WebTest"/> -->
+			
+			<class name="com.hcl.taf.Main"/>
+			<class name="com.hcl.taf.TC1"/>
+		</classes>
+	</test>
+</suite>
