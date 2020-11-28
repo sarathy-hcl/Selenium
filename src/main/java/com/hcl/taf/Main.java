@@ -91,6 +91,7 @@ public void setUp() {
   try {
 	System.out.println("Welcome...");
 	devicePlatform = System.getProperty("devicePlatform");
+	System.out.println("DevicePlatform >>> "+devicePlatform);
 	evidencePath="D://";
 	runListId="1";
 	EvidenceCreation.setdefaultTafEvidencePath(evidencePath);
