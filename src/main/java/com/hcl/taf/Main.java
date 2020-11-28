@@ -89,11 +89,10 @@ static ChromeDriverService chromeDriverService;
 @Test
 public void setUp() {
   try {
-	System.out.println("Welcome...");
 	devicePlatform = System.getProperty("devicePlatform");
 	System.out.println("DevicePlatform >>> "+devicePlatform);
-	evidencePath="D://";
-	runListId="1";
+	evidencePath=System.getProperty("EVIDENCE_PATH");
+	runListId=System.getProperty("TESTRUNLIST_ID");
 	EvidenceCreation.setdefaultTafEvidencePath(evidencePath);
 	EvidenceCreation.setrunListId(runListId);
 	EvidenceCreation.setdeviceId(devicePlatform);
@@ -101,13 +100,61 @@ public void setUp() {
 	dependentFilesPath = System.getProperty("DEPENDENT_FILES_PATH");
 	webURL=System.getProperty("webAppURL");
 	  
-	browserName = "CHROME";
-	  System.out.println("BrowserName : "+browserName);
+	browserName = devicePlatform.split("-")[1];
+	System.out.println("BrowserName : "+browserName);
 	projectPath=Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace("/", java.io.File.separator);
 	if(projectPath.endsWith(".jar"))projectPath=projectPath.substring(0,projectPath.lastIndexOf(java.io.File.separator)+1);
 	//work around for local execution
 	if(projectPath==null || projectPath.endsWith("null")) projectPath=new java.io.File(".").getAbsolutePath();
 	
+	  try{
+            String receivedTestDataFilePath=System.getProperty("TESTDATA");
+            String[] testDataFileNames = receivedTestDataFilePath.split(",");
+            String testDataFilesPath="";
+            for(String testDataFile : testDataFileNames)
+            {
+                if(testDataFile.length()>0)
+                    testDataFilesPath = testDataFilesPath + ',' + projectPath +  File.separator + testDataFile;
+            }
+            System.out.println("Test Data Files :"+ testDataFilesPath);
+            if(testDataFilesPath.length() > 1 )
+            {
+                testDataFilesPath = testDataFilesPath.trim().substring(1);
+                Map <String, String> testdata_DataSourceProperties = new HashMap<String, String>();
+                testdata_DataSourceProperties.put(TestDataManagerFactory.DATA_PROPERTIES_FILENAME_KEY, testDataFilesPath);
+                testdata_DataSourceProperties.put(TestDataManagerFactory.DATA_PROPERTIES_WORKSHEET_KEY, "Test-Data");
+                tafTestDataManager = TestDataManagerFactory.getTestDataManager(TestDataManagerFactory.DATA_SOURCE_EXCEL, testdata_DataSourceProperties);
+            }
+            else
+            {
+                tafTestDataManager=null;
+            }
+        }
+        catch(Exception ex){
+            System.out.println("Could not load test data" + ex.getMessage());
+            throw ex;
+        }
+        try{
+            String receivedTestObjectRepositoryFilePath=System.getProperty("OBJ_REPOSITORY");
+            String[] testObjectRepositoryFileNames = receivedTestObjectRepositoryFilePath.split(",");
+            String testObjectRepositoryFilesPath="";
+            for(String testObjectRepositoryFile : testObjectRepositoryFileNames)
+            {
+                testObjectRepositoryFilesPath = testObjectRepositoryFilesPath + ',' + projectPath +  File.separator + testObjectRepositoryFile;
+            }
+            testObjectRepositoryFilesPath = testObjectRepositoryFilesPath.trim().substring(1);
+            System.out.println("Object Repository Files :"+ testObjectRepositoryFilesPath);
+            Map <String, String> objectRepository_DataSourceProperties = new HashMap<String, String>();
+            objectRepository_DataSourceProperties.put(ObjectRepositoryManagerFactory.PROPERTIES_FILENAME_KEY, testObjectRepositoryFilesPath);
+            objectRepository_DataSourceProperties.put(ObjectRepositoryManagerFactory.PROPERTIES_WORKSHEET_KEY, "Object-Repository");
+            objectRepository_DataSourceProperties.put(ObjectRepositoryManagerFactory.PROPERTIES_APPLICATION_TYPE_KEY, "Web");
+            objectRepository_DataSourceProperties.put(ObjectRepositoryManagerFactory.PROPERTIES_BROWSER_KEY, browserName);
+            tafObjectRepositoryManager = ObjectRepositoryManagerFactory.getObjectRepositoryManager(ObjectRepositoryManagerFactory.DATA_SOURCE_EXCEL, objectRepository_DataSourceProperties);
+        }
+        catch(Exception ex){
+            System.out.println("Could not load object repository" + ex.getMessage());
+            throw ex;
+    }
 	
 	switch(browserName)
 		{
