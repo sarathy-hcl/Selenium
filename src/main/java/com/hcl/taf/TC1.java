@@ -85,7 +85,8 @@ public void setUp() {
                      
 {                     
 try{
-   String webSiteURL = util.processStringData("https://www.google.com");
+   String webSiteURL = util.processStringData("webAppUrl[1]");
+	System.out.println("WebSite >>>"+webSiteURL);
    testStepStartTime = new Date(System.currentTimeMillis());
    testStepInput = "https://www.google.com : " + webSiteURL;
 	driver.get(webSiteURL); 
