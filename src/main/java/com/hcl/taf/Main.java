@@ -109,17 +109,10 @@ public void setUp() {
 	
 	  try{
             String receivedTestDataFilePath=System.getProperty("TESTDATA");
-            String[] testDataFileNames = receivedTestDataFilePath.split(",");
-            String testDataFilesPath="";
-            for(String testDataFile : testDataFileNames)
-            {
-                if(testDataFile.length()>0)
-                    testDataFilesPath = testDataFilesPath + ',' + projectPath +  File.separator + testDataFile;
-            }
+            String testDataFilesPath=receivedTestDataFilePath;           
             System.out.println("Test Data Files :"+ testDataFilesPath);
             if(testDataFilesPath.length() > 1 )
             {
-                testDataFilesPath = testDataFilesPath.trim().substring(1);
                 Map <String, String> testdata_DataSourceProperties = new HashMap<String, String>();
                 testdata_DataSourceProperties.put(TestDataManagerFactory.DATA_PROPERTIES_FILENAME_KEY, testDataFilesPath);
                 testdata_DataSourceProperties.put(TestDataManagerFactory.DATA_PROPERTIES_WORKSHEET_KEY, "Test-Data");
@@ -135,14 +128,8 @@ public void setUp() {
             throw ex;
         }
         try{
-            String receivedTestObjectRepositoryFilePath=System.getProperty("OBJ_REPOSITORY");
-            String[] testObjectRepositoryFileNames = receivedTestObjectRepositoryFilePath.split(",");
-            String testObjectRepositoryFilesPath="";
-            for(String testObjectRepositoryFile : testObjectRepositoryFileNames)
-            {
-                testObjectRepositoryFilesPath = testObjectRepositoryFilesPath + ',' + projectPath +  File.separator + testObjectRepositoryFile;
-            }
-            testObjectRepositoryFilesPath = testObjectRepositoryFilesPath.trim().substring(1);
+            String receivedTestObjectRepositoryFilePath=System.getProperty("OBJ_REPOSITORY");            
+            String testObjectRepositoryFilesPath=receivedTestObjectRepositoryFilePath;
             System.out.println("Object Repository Files :"+ testObjectRepositoryFilesPath);
             Map <String, String> objectRepository_DataSourceProperties = new HashMap<String, String>();
             objectRepository_DataSourceProperties.put(ObjectRepositoryManagerFactory.PROPERTIES_FILENAME_KEY, testObjectRepositoryFilesPath);
